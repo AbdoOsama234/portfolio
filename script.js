@@ -524,7 +524,7 @@ function initBackToTop() {
    CONTACT FORM (Web3Forms)
    Get your free access key at https://web3forms.com
    ============================================ */
-const WEB3FORMS_ACCESS_KEY = 'e9529291-12a7-45d8-8bce-51049578823b';
+const WEB3FORMS_ACCESS_KEY = 'c8e2108c-c7d7-4132-ae92-5cd8476b428c';
 
 function initContactForm() {
   const form = document.getElementById('contactForm');
