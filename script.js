@@ -524,7 +524,7 @@ function initBackToTop() {
    CONTACT FORM (Web3Forms)
    Get your free access key at https://web3forms.com
    ============================================ */
-const WEB3FORMS_ACCESS_KEY = 'c8e2108c-c7d7-4132-ae92-5cd8476b428c';
+const WEB3FORMS_ACCESS_KEY = 'cbc20a81-d998-4d63-a795-50fa9b542e83';
 
 function initContactForm() {
   const form = document.getElementById('contactForm');
@@ -533,7 +533,8 @@ function initContactForm() {
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === 'YOUR_ACCESS_KEY_HERE') {
+    const accessKey = WEB3FORMS_ACCESS_KEY.trim();
+    if (!accessKey || accessKey === 'YOUR_ACCESS_KEY_HERE') {
       showToast(
         'Contact form not configured. Get a free key at web3forms.com',
         'error'
@@ -547,6 +548,13 @@ function initContactForm() {
     btn.disabled = true;
 
     const formData = new FormData(form);
+    const payload = {
+      access_key: accessKey,
+      subject: `Portfolio Contact: ${formData.get('subject')}`,
+      name: formData.get('from_name'),
+      email: formData.get('from_email'),
+      message: formData.get('message'),
+    };
 
     try {
       const response = await fetch('https://api.web3forms.com/submit', {
@@ -555,13 +563,7 @@ function initContactForm() {
           'Content-Type': 'application/json',
           Accept: 'application/json',
         },
-        body: JSON.stringify({
-          access_key: WEB3FORMS_ACCESS_KEY,
-          subject: `Portfolio Contact: ${formData.get('subject')}`,
-          name: formData.get('from_name'),
-          email: formData.get('from_email'),
-          message: formData.get('message'),
-        }),
+        body: JSON.stringify(payload),
       });
 
       const data = await response.json();
@@ -574,8 +576,11 @@ function initContactForm() {
       form.reset();
     } catch (error) {
       console.error('Contact form error:', error);
+      const message = error instanceof Error ? error.message : 'Failed to send message';
       showToast(
-        'Failed to send message. Please email me directly at abdelrahmanosama.eng9@gmail.com',
+        message.includes('Access Key')
+          ? 'Invalid access key. Create a new one at web3forms.com'
+          : 'Failed to send. Please email abdelrahmanosama.eng9@gmail.com directly',
         'error'
       );
     } finally {
