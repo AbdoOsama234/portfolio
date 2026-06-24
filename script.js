@@ -521,27 +521,70 @@ function initBackToTop() {
 }
 
 /* ============================================
-   CONTACT FORM
+   CONTACT FORM (Web3Forms)
+   Get your free access key at https://web3forms.com
    ============================================ */
+const WEB3FORMS_ACCESS_KEY = 'e9529291-12a7-45d8-8bce-51049578823b';
+
 function initContactForm() {
   const form = document.getElementById('contactForm');
   if (!form) return;
 
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
+
+    if (!WEB3FORMS_ACCESS_KEY || WEB3FORMS_ACCESS_KEY === 'YOUR_ACCESS_KEY_HERE') {
+      showToast(
+        'Contact form not configured. Get a free key at web3forms.com',
+        'error'
+      );
+      return;
+    }
 
     const btn = document.getElementById('submitBtn');
     const originalText = btn.innerHTML;
     btn.innerHTML = '<span>Sending...</span>';
     btn.disabled = true;
 
-    // Simulate send (replace with actual EmailJS or backend)
-    setTimeout(() => {
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Portfolio Contact: ${formData.get('subject')}`,
+          name: formData.get('from_name'),
+          email: formData.get('from_email'),
+          message: formData.get('message'),
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok || !data.success) {
+        throw new Error(data.message || 'Failed to send message');
+      }
+
       showToast('Message sent successfully! I\'ll get back to you soon.', 'success');
       form.reset();
+    } catch (error) {
+      console.error('Contact form error:', error);
+      showToast(
+        'Failed to send message. Please email me directly at abdelrahmanosama.eng9@gmail.com',
+        'error'
+      );
+    } finally {
       btn.innerHTML = originalText;
       btn.disabled = false;
-    }, 1500);
+      if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+      }
+    }
   });
 }
 
@@ -586,6 +629,9 @@ function initSmoothScroll() {
    INITIALIZE EVERYTHING
    ============================================ */
 document.addEventListener('DOMContentLoaded', () => {
+  // Contact form first so it always initializes
+  initContactForm();
+
   // Render all sections
   renderAboutStats();
   renderAboutHighlights();
@@ -598,7 +644,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initNavigation();
   initScrollReveal();
   initBackToTop();
-  initContactForm();
   initSmoothScroll();
 
   // Typed text
