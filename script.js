@@ -63,21 +63,39 @@ const experiences = [
 ];
 
 const projects = [
-  {
-    icon: '👔',
-    title: 'HR Management & Workforce Tracking',
-    description: 'Enterprise HR solution automating employee self-service processes, approval workflows, and workforce management operations. Features real-time visibility into workforce activities, attendance, and field operations through location tracking and monitoring.',
-    tech: ['Flutter', 'BLoC', 'REST API', 'Firebase', 'Google Maps'],
-    color: '#6366f1',
-    driveLink: 'https://drive.google.com/drive/folders/17PyUfRu9XeHmgnFXPlcUymqu1GvEj2Bj?usp=sharing'
-  },
+
   {
     icon: '🚗',
     title: 'HalaCar Application',
     description: 'A car dealership application featuring vehicle listings, service packages, customer requests, and order status tracking. Implemented responsive UI and scalable architecture for seamless experience across iOS and Android.',
     tech: ['Flutter', 'REST API', 'Clean Architecture', 'Dio'],
     color: '#8b5cf6',
-    driveLink: 'https://drive.google.com/drive/folders/1RHK69eBywTqIU_-O4EoqnJ5MY6BK3N6P?usp=sharing'
+    driveLink: 'https://apps.apple.com/eg/app/hala-car/id6467125118'
+  },
+  {
+    icon: '🛍️',
+    title: 'ZikZak E-Commerce Store',
+    description: 'E-commerce mobile application for browsing and purchasing smartphones, mobile accessories, audio products, and gaming gear. Features product discovery and comparison, detailed product views, customer reviews, shopping cart, order management, user accounts, and multiple payment options including cash on delivery.',
+    tech: ['Flutter', 'BLoC', 'REST API', 'Firebase', 'Payment Gateway'],
+    color: '#8b5cf6',
+    driveLink: 'https://apps.apple.com/eg/app/zikzak/id6446807683'
+  },
+  {
+    icon: '👥',
+    title: 'Mawared HR & Workforce Management',
+    description: 'HR and workforce management application designed for employees and managers. Features employee attendance tracking, request and permission management, customized notifications, and real-time workforce monitoring with location-based services.',
+    tech: ['Flutter', 'BLoC', 'REST API', 'Firebase', 'Location Services'],
+    color: '#2563eb',
+    driveLink: 'https://apps.apple.com/eg/app/mawared-hr/id1572304856'
+  },
+
+  {
+    icon: '🚗',
+    title: 'Ego Ride-Hailing Application',
+    description: 'Ride-hailing application that allows users to book rides, track drivers in real time, view driver and vehicle details, manage trips, and rate their experience. Includes ride cancellation, safety features, silent trip mode, and promotional offers.',
+    tech: ['Flutter', 'BLoC', 'REST API', 'Google Maps', 'Firebase'],
+    color: '#0ea5e9',
+    driveLink: 'https://apps.apple.com/eg/app/ego-the-ride-hailing-app/id1378953127'
   },
   {
     icon: '💼',
@@ -86,14 +104,6 @@ const projects = [
     tech: ['Flutter', 'BLoC', 'REST API', 'Firebase'],
     color: '#ec4899',
     driveLink: 'https://drive.google.com/drive/folders/1ra9jETGLvX65UCYVnvwNZ4CD_jW8Q5ga?usp=sharing'
-  },
-  {
-    icon: '🚕',
-    title: 'Tawsela – Ride-Hailing App',
-    description: 'An Uber-like transportation platform enabling users to request rides, track drivers in real time, and manage trips from booking to completion. Features accurate fare estimation, trip history, and real-time ride status monitoring.',
-    tech: ['Flutter', 'Google Maps', 'Firebase', 'REST API', 'BLoC'],
-    color: '#f59e0b',
-    driveLink: '#'
   },
   {
     icon: '🚛',
